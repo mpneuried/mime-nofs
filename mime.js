@@ -19,48 +19,33 @@ function Mime() {
  * @param map (Object) type definitions
  */
 Mime.prototype.define = function (map) {
-  for (var type in map) {
+  var typekeys = ( Object.keys( map ) ).sort();
+  
+  for (var ik = 0; ik < typekeys.length; ik++) {
+    var type = typekeys[ik];
     var exts = map[type];
+    var _mimepair = [];
     for (var i = 0; i < exts.length; i++) {
       if (process.env.DEBUG_MIME && this.types[exts]) {
         console.warn(this._loading.replace(/.*\//, ''), 'changes "' + exts[i] + '" extension type from ' +
           this.types[exts] + ' to ' + type);
       }
-
-      this.types[exts[i]] = type;
+      // priorize the none "???/x-???" mimes
+      if( !this.types[exts[i]] ){
+        this.types[exts[i]] = type;
+      }else{
+        _mimepair = type.split( "/" );
+        if( _mimepair[1] && _mimepair[1][0] !== "x" ){
+          this.types[exts[i]] = type;
+        }
+      }
     }
-
+    
     // Default extension is the first one we encounter
     if (!this.extensions[type]) {
       this.extensions[type] = exts[0];
     }
   }
-};
-
-/**
- * Load an Apache2-style ".types" file
- *
- * This may be called multiple times (it's expected).  Where files declare
- * overlapping types/extensions, the last file wins.
- *
- * @param file (String) path of file to load.
- */
-Mime.prototype.load = function(file) {
-  this._loading = file;
-  // Read file and split into lines
-  var map = {},
-      content = fs.readFileSync(file, 'ascii'),
-      lines = content.split(/[\r\n]+/);
-
-  lines.forEach(function(line) {
-    // Clean up whitespace/comments, and split into fields
-    var fields = line.replace(/\s*#.*|^\s*|\s*$/g, '').split(/\s+/);
-    map[fields.shift()] = fields;
-  });
-
-  this.define(map);
-
-  this._loading = null;
 };
 
 /**
@@ -84,7 +69,7 @@ Mime.prototype.extension = function(mimeType) {
 var mime = new Mime();
 
 // Define built-in types
-mime.define(require('./types.json'));
+mime.define(require('./types.js'));
 
 // Default type
 mime.default_type = mime.lookup('bin');

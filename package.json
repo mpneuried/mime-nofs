@@ -1,41 +1,45 @@
 {
-  "author": {
-    "name": "Robert Kieffer",
-    "url": "http://github.com/broofa",
-    "email": "robert@broofa.com"
+  "name": "mime-nofs",
+  "description": "A comprehensive library for mime-type mapping without a filesystem dependency",
+  "version": "2.0.0",
+  "keywords": [
+    "util",
+    "mime",
+    "no",
+    "without",
+    "filesystem",
+    "fs"
+  ],
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/mpneuried/mime-nofs",
+    "type": "git"
   },
-  "scripts": {
-    "test": "node test.js"
-  },
+  "main": "mime.js",
   "bin": {
     "mime": "cli.js"
+  },
+  "scripts": {
+    "prepublish": "node build/build.js > types.js",
+    "test": "node build/test.js"
+  },
+  "author": {
+    "name": "M. Peter",
+    "url": "http://github.com/mpneuried"
   },
   "contributors": [
     {
       "name": "Benjamin Thomas",
       "url": "http://github.com/bentomas",
       "email": "benjamin@benjaminthomas.org"
+    },{
+      "name": "Robert Kieffer",
+      "url": "http://github.com/broofa",
+      "email": "robert@broofa.com"
     }
   ],
-  "description": "A comprehensive library for mime-type mapping",
-  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "mime-db": "^1.2.0"
-  },
-  "scripts": {
-    "prepublish": "node build/build.js > types.json",
-    "test": "node build/test.js"
-  },
-  "keywords": [
-    "util",
-    "mime"
-  ],
-  "main": "mime.js",
-  "name": "mime",
-  "repository": {
-    "url": "https://github.com/broofa/node-mime",
-    "type": "git"
-  },
-  "version": "1.3.4"
+  }
 }

@@ -8,4 +8,4 @@ Object.keys(db).forEach(function(key) {
   }
 });
 
-console.log(JSON.stringify(mapByType));
+console.log("module.exports = " + JSON.stringify(mapByType, true, 2));
