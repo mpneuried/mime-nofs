@@ -1,25 +1,27 @@
 mime-nofs
 ===========
 
+Comprehensive MIME type mapping API based on mime-db module.
+
+---
+
 [![Build Status](https://secure.travis-ci.org/mpneuried/mime-nofs.png?branch=master)](http://travis-ci.org/mpneuried/mime-nofs)
 [![Build Status](https://david-dm.org/mpneuried/mime-nofs.png)](https://david-dm.org/mpneuried/mime-nofs)
 [![NPM version](https://badge.fury.io/js/mime-nofs.png)](http://badge.fury.io/js/mime-nofs)
 
-This is a fork of **[node-mime](https://github.com/broofa/node-mime)** from **[Robert Kieffer (broofa)](https://github.com/broofa)**.
-I removed the file-system dependency to be able to use it within the browser and other systems.
-And a added a prioritization of non `???/x-???` mime types.
+This is a fork of **[node-mime](https://github.com/broofa/node-mime)** from **[Robert Kieffer (broofa)](https://github.com/broofa)**.  
+I removed the file-system dependency to be able to use it within the browser and other system.  
+Added a prioritization of non `???/x-???` mime types to fulfill the tests.
 
 [![NPM](https://nodei.co/npm/mime-nofs.png?downloads=true&stars=true)](https://nodei.co/npm/mime-nofs/)
 
 ---
 
-Comprehensive MIME type mapping API based on mime-db module.
-
 ## Install
 
 Install with [npm](http://github.com/isaacs/npm):
 
-    npm install mime
+    npm install mime-nofs
 
 ## Contributing / Testing
 

@@ -1,6 +1,3 @@
-var path = require('path');
-var fs = require('fs');
-
 function Mime() {
   // Map of extension -> mime type
   this.types = Object.create(null);
